@@ -4,7 +4,7 @@ $violet = hsl(257, 40%, 49%)
 $soft-magenta = hsl(300, 69%, 71%)
 
 $breakpoint = 768px
-
+$second-breakpoint = 1440px
 
 *
   margin 0
@@ -18,11 +18,15 @@ body
   background-color $violet
   background-image url("./images/bg-mobile.svg")
   background-repeat no-repeat
+  background-position-x center
 
   @media (min-width: $breakpoint)
     height 100vh
     background-image url("./images/bg-desktop.svg")
     background-position-y center
+    background-size cover
+
+  @media (min-width: $second-breakpoint)
     background-size contain
 
 .container
@@ -33,7 +37,7 @@ body
   margin 2rem 1.5rem
   height 100%
   @media (min-width: $breakpoint)
-    min-width $breakpoint
+    min-width "calc( %s - 50px )" % $breakpoint
     width auto
     margin 3.3rem 4.5rem
     max-width 1296px
@@ -56,6 +60,8 @@ body
     img
       width 100%
       @media (min-width: $breakpoint)
+        width "calc(%s / 2)" % $breakpoint
+      @media (min-width: $second-breakpoint)
         width 709px
 
     div:last-of-type
@@ -66,6 +72,9 @@ body
       @media (min-width: $breakpoint)
         justify-content flex-start
         align-items flex-start
+        margin-left 1rem
+
+      @media (min-width: $second-breakpoint)
         margin-left 3.3rem
 
     h1,p
@@ -79,6 +88,9 @@ body
       font-size 24px
       margin-top 3.5rem
       @media (min-width: $breakpoint)
+        font-size 30px
+        margin-top 1rem
+      @media (min-width: $second-breakpoint)
         font-size 40px
         margin-top 2.8rem
 
